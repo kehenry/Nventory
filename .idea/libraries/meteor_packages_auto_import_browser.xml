@@ -144,7 +144,9 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.17/web.browser/logging.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/check/1.2.5/web.browser/match_test.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.17/web.browser/logging_test.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/css/bootstrap.css" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/check/1.2.5/web.browser/isPlainObject.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/js/bootstrap.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/check/1.2.5/web.browser/match.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/caching-html-compiler/1.1.0/web.browser/caching-html-compiler.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/launch-screen/1.1.1/web.browser/mobile-launch-screen.js" />
@@ -310,7 +312,9 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.17/web.browser/logging.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/check/1.2.5/web.browser/match_test.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/logging/1.1.17/web.browser/logging_test.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/css/bootstrap.css" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/check/1.2.5/web.browser/isPlainObject.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/twbs_bootstrap/3.3.6/web.browser/dist/js/bootstrap.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/check/1.2.5/web.browser/match.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/caching-html-compiler/1.1.0/web.browser/caching-html-compiler.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/launch-screen/1.1.1/web.browser/mobile-launch-screen.js" />

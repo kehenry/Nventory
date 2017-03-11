@@ -1,7 +1,10 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import './home.html';
+import './main.html';
+
+
+
 
 //Starter code -- use as guide
 // Template.hello.onCreated(function helloOnCreated() {
@@ -15,9 +18,57 @@ import './home.html';
 //   },
 // });
 //
-// Template.hello.events({
-//   'click button'(event, instance) {
-//     // increment the counter when button is clicked
-//     instance.counter.set(instance.counter.get() + 1);
-//   },
+Template.register.events({
+  'submit form': function(event, template) {
+    event.preventDefault();
+    var emailVar = template.find('#email').value;
+    var pinVar = template.find('#userPin').value;
+    Accounts.createUser({
+      email: emailVar,
+      password: pinVar
+    });
+    console.log(emailVar + " registered");
+  },'click .goLogin': function(event){
+        event.preventDefault();
+        FlowRouter.go('login');
+    }
+});
+
+Template.login.events({
+  'submit form': function(event, template) {
+    event.preventDefault();
+    var emailVar = template.find('#login-email').value;
+    var pinVar = template.find('#login-userPin').value;
+    Meteor.loginWithPassword(emailVar,pinVar);
+    console.log(emailVar + " logged in");
+  },'click .register': function(event){
+        event.preventDefault();
+        FlowRouter.go('register');
+        console.log("register here");
+    }
+});
+
+Template.home.events({
+  'click .logout': function(event){
+    event.preventDefault();
+    Meteor.logout();
+    console.log("logged out");
+  }
+
+});
+
+// Template.home.events({
+//     'click.register': function(event){
+//         event.preventDefault();
+//         FlowRouter.go('register');
+//         console.log("register here");
+//     }
 // });
+
+Tracker.autorun(function () {
+    if (!Meteor.userId()) {
+        FlowRouter.go('login');
+    }
+});
+
+

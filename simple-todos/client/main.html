@@ -1,0 +1,54 @@
+
+<template name="login">
+    <head>
+        <title>Nventory</title>
+    </head>
+    <form>
+        <div class="container text-center">
+            <div class="row" style="padding-top:100px;">
+                <h1 style="padding-bottom:10px;">Nventory</h1>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <input type="text" id="login-email" placeholder="Enter your email here"><br>
+                    <input type="password" id="login-userPin" placeholder="Enter your pin here"><br>
+                    <input type="submit" value="Login">
+                    <button type="button" class="register btn btn-secondary">Register New User</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </form>
+</template>
+
+<template name="register">
+    <head>
+        <title>New User</title>
+    </head>
+    <form>
+        <div class="container text-center">
+            <div class="row" style="padding-top:100px;">
+                <h1 style="padding-bottom:10px;">New User</h1>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <input type="text" id="email" placeholder="Enter your email here"><br>
+                    <input type="password" id="userPin" placeholder="Enter a pin"><br>
+                    <input type="submit" value="Register">
+                    <button type="button" class=" goLogin btn btn-secondary">Back to Login</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </form>
+</template>
+
+<template name="home">
+    <form>
+        <div class="container text-center">
+            <div class="row" style="padding-top:100px;">
+                <h1 style="padding-bottom:10px;">Welcome User</h1>
+                <button type="button" class="logout btn btn-secondary">Logout</button>
+
+            </div>
+        </div>
+    </form>
+</template>

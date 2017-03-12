@@ -80,7 +80,7 @@ Template.my_form.events({
     'submit .Insert': function( event ){   // also tried just 'submit', both work for me!
         console.log( 'Submitting...' );
         event.preventDefault();
-        var name = event.target.textbox1.value;
+         name = event.target.textbox1.value;
         Items.insert({
             title: name,
         });
@@ -88,3 +88,13 @@ Template.my_form.events({
     }
 });
 
+Template.item.events({
+    /*'click .updoot'() {
+        // Set the checked property to the opposite of its current value
+         name1 = target.textbox1.value;
+        Items.update(this._id, {$set: {title: "cat"}});
+    },*/
+    'click .delete'() {
+        Items.remove(this._id);
+    },
+});

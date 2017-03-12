@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
-
+import {Items} from '../collections.js';
 
 
 
@@ -54,7 +54,6 @@ Template.home.events({
     Meteor.logout();
     console.log("logged out");
   }
-
 });
 
 // Template.home.events({
@@ -71,4 +70,21 @@ Tracker.autorun(function () {
     }
 });
 
+Template.home.helpers({
+    items() {
+        return Items.find({});
+    }
+});
+
+Template.my_form.events({
+    'submit .InsertTest': function( event ){   // also tried just 'submit', both work for me!
+        console.log( 'Submitting form!' );
+        event.preventDefault();
+        var name = event.target.textbox1.value;
+        Items.insert({
+            title: name,
+        });
+        event.target.textbox1.value = "";
+    }
+});
 

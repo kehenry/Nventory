@@ -47,8 +47,31 @@
             <div class="row" style="padding-top:100px;">
                 <h1 style="padding-bottom:10px;">Welcome User</h1>
                 <button type="button" class="logout btn btn-secondary">Logout</button>
-
             </div>
+
         </div>
     </form>
+    {{> my_form}}
+    <ul>
+        {{#each items}}
+            {{>item}}
+        {{/each}}
+    </ul>
+</template>
+
+<template name="my_form">
+    <form class="InsertTest">
+    <div class="input-group">
+    <input type="text"  class="form-control" autofocus="" placeholder="Insert item" id="items" name="textbox1">
+        <span class="input-group-btn">
+    <button class="btn btn-primary" type="submit" id="insert">Add</button>
+        </span>
+    </div>
+    </form>
+</template>
+
+<template name="item">
+    <li>
+        {{title}}
+    </li>
 </template>

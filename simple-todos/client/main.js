@@ -77,8 +77,8 @@ Template.home.helpers({
 });
 
 Template.my_form.events({
-    'submit .InsertTest': function( event ){   // also tried just 'submit', both work for me!
-        console.log( 'Submitting form!' );
+    'submit .Insert': function( event ){   // also tried just 'submit', both work for me!
+        console.log( 'Submitting...' );
         event.preventDefault();
         var name = event.target.textbox1.value;
         Items.insert({

@@ -27,3 +27,5 @@ accounts-ui
 kadira:flow-router
 blaze
 kadira:blaze-layout
+aldeed:collection2
+aldeed:autoform

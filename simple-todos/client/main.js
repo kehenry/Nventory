@@ -2,22 +2,9 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
-import {Items} from '../collections.js';
+import {Items} from '../collections/collections.js';
 
 
-
-//Starter code -- use as guide
-// Template.hello.onCreated(function helloOnCreated() {
-//   // counter starts at 0
-//   this.counter = new ReactiveVar(0);
-// });
-//
-// Template.hello.helpers({
-//   counter() {
-//     return Template.instance().counter.get();
-//   },
-// });
-//
 Template.register.events({
   'submit form': function(event, template) {
     event.preventDefault();
@@ -27,11 +14,13 @@ Template.register.events({
       email: emailVar,
       password: pinVar
     });
-    console.log(emailVar + " registered");
-  },'click .goLogin': function(event){
+    console.log(emailVar + " registered as " + userType);
+  },
+    'click .goLogin': function(event){
         event.preventDefault();
         FlowRouter.go('login');
     }
+
 });
 
 Template.login.events({
@@ -53,7 +42,19 @@ Template.home.events({
     event.preventDefault();
     Meteor.logout();
     console.log("logged out");
+  },'click .addNew': function(event){
+    event.preventDefault();
+    FlowRouter.go('addNewProduct');
+    console.log("add products here");
   }
+});
+
+Template.addNewProduct.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('home');
+        console.log("returned home");
+    }
 });
 
 // Template.home.events({
@@ -75,26 +76,31 @@ Template.home.helpers({
         return Items.find({});
     }
 });
-
-Template.my_form.events({
-    'submit .Insert': function( event ){   // also tried just 'submit', both work for me!
-        console.log( 'Submitting...' );
-        event.preventDefault();
-         name = event.target.textbox1.value;
-        Items.insert({
-            title: name,
-        });
-        event.target.textbox1.value = "";
+Template.home.helpers({
+    products() {
+        return Products.find({});
     }
 });
 
-Template.item.events({
-    /*'click .updoot'() {
-        // Set the checked property to the opposite of its current value
-         name1 = target.textbox1.value;
-        Items.update(this._id, {$set: {title: "cat"}});
-    },*/
-    'click .delete'() {
-        Items.remove(this._id);
-    },
-});
+// Template.my_form.events({
+//     'submit .Insert': function( event ){   // also tried just 'submit', both work for me!
+//         console.log( 'Submitting...' );
+//         event.preventDefault();
+//          name = event.target.textbox1.value;
+//         Items.insert({
+//             title: name,
+//         });
+//         event.target.textbox1.value = "";
+//     }
+// });
+
+// Template.item.events({
+//     /*'click .updoot'() {
+//         // Set the checked property to the opposite of its current value
+//          name1 = target.textbox1.value;
+//         Items.update(this._id, {$set: {title: "cat"}});
+//     },*/
+//     'click .delete'() {
+//         Items.remove(this._id);
+//     },
+// });

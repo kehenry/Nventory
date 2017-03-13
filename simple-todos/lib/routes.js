@@ -22,6 +22,13 @@ FlowRouter.route('/',{
     }
 });
 
+FlowRouter.route('/addNewProduct',{
+    name:'addNewProduct',
+    action(){
+        BlazeLayout.render('addNewProduct');
+    }
+});
+
 
 function checkLoggedIn (ctx, redirect) {
     if (!Meteor.userId()) {

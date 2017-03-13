@@ -6,7 +6,7 @@
     <form>
         <div class="container text-center">
             <div class="row" style="padding-top:100px;">
-                <h1 style="padding-bottom:10px;">Nventory</h1>
+                <h1 style="padding-bottom:10px;">Log In</h1>
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <input type="text" id="login-email" placeholder="Enter your email here"><br>
@@ -43,39 +43,104 @@
 
 <template name="home">
     <form>
-        <div class="container text-center">
-            <div class="row" style="padding-top:100px;">
-                <h1 style="padding-bottom:10px;">Welcome User</h1>
-                <button type="button" class="logout btn btn-secondary">Logout</button>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col-md-1">
+                    <button type="button" class="logout btn btn-secondary">Logout</button>
+                </div>
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-8 text-right">
+                    <button type="button" class="addNew btn btn-secondary">Add New Product</button>
+                </div>
+
             </div>
-
         </div>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="row text-center" style="padding-bottom: 30px; ">
+                    <h1>Nventory</h1>
+
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Left In Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each products}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>${{price}}</td>
+                            <td>{{quantity}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
     </form>
-    {{> my_form}}
-    <ul>
-        {{#each items}}
-            {{>item}}
-        {{/each}}
-    </ul>
+    <!--{{> my_form}}-->
+    <!--<ul>-->
+        <!--{{#each items}}-->
+            <!--{{>item}}-->
+        <!--{{/each}}-->
+    <!--</ul>-->
 </template>
 
-<template name="my_form">
-    <form class="Insert">
-    <div class="input-group">
-    <input type="text"  class="form-control" autofocus="" placeholder="Insert item" id="items" name="textbox1" style = "width: 100%;">
-       <!-- <span class="input-group-btn">-->
-    <button class="btn btn-primary" type="submit" id="insert" >Submit</button>
-       <!-- </span>-->
+<!--<template name="my_form">-->
+    <!--<form class="Insert">-->
+        <!--<div class="text-center container-fluid">-->
+            <!--<div class="row">-->
+                <!--<div class="col-md-4">-->
+
+                <!--</div>-->
+                <!--<div class="col-md-4">-->
+                    <!--<div class="input-group">-->
+                        <!--<input type="text"  class="form-control" autofocus="" placeholder="Insert item" id="items" name="textbox1" style = "width: 100%;">-->
+                        <!--<button class="btn btn-info" type="submit" id="insert" >Submit</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-md-4">-->
+
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</form>-->
+<!--</template>-->
+
+<!--<template name="item">-->
+    <!--<li class="{{#if checked}}checked{{/if}}">-->
+        <!--<button class="delete">&times;</button>-->
+        <!--<span class="title">{{title}}</span>-->
+    <!--</li>-->
+<!--</template>-->
+
+
+
+
+
+
+<template name="addNewProduct">
+    <div class="container-fluid">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary">Go Back</button>
+        </div>
+        <div class="row" style="padding-top:30px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <h1>Add New Product</h1>
+                {{> quickForm collection="Products" id="insertProduct" type = "insert" class="new-prod-form"}}
+            </div>
+            <div class="col-md-9"></div>
+        </div>
     </div>
-    </form>
-</template>
 
-<template name="item">
-    <li class="{{#if checked}}checked{{/if}}">
-        <button class="delete">&times;</button>
-
-       <!-- <input type="checkbox" checked="{{checked}}" class="toggle-checked" />-->
-        <span class="title">{{title}}</span>
-       <!-- <button type="button" class="updoot">update</button>-->
-    </li>
 </template>

@@ -28,6 +28,12 @@ FlowRouter.route('/addNewProduct',{
         BlazeLayout.render('addNewProduct');
     }
 });
+FlowRouter.route('/removeProduct',{
+    name:'removeProduct',
+    action(){
+        BlazeLayout.render('removeProduct');
+    }
+});
 
 
 function checkLoggedIn (ctx, redirect) {

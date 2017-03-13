@@ -33,7 +33,7 @@
                     <input type="text" id="email" placeholder="Enter your email here"><br>
                     <input type="password" id="userPin" placeholder="Enter a pin"><br>
                     <input type="submit" value="Register">
-                    <button type="button" class=" goLogin btn btn-secondary">Back to Login</button>
+                    <button type="button" class=" goLogin btn btn-secondary"><i class="glyphicon glyphicon-arrow-left"></i> Back to Login</button>
                 </div>
                 <div class="col-md-4"></div>
             </div>
@@ -46,14 +46,14 @@
         <div class="row">
             <div class="container-fluid">
                 <div class="col-md-1">
-                    <button type="button" class="logout btn btn-secondary">Logout</button>
+                    <button type="button" class="logout btn btn-secondary"><i class="glyphicon glyphicon-off"></i>  Logout</button>
                 </div>
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-8 text-right">
-                    <button type="button" class="addNew btn btn-secondary">Add New Product</button>
+                    <button type="button" class="addNew btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add New Product</button>
+                    <button type="button" class="removeProduct btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Product</button>
                 </div>
-
             </div>
         </div>
         <div class="row">
@@ -62,66 +62,31 @@
                     <h1>Nventory</h1>
 
                 </div>
-                <table class="table">
-                    <thead>
+                <div class="container-fluid">
+                    <table class="table">
+                        <thead>
                         <tr>
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Left In Stock</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {{#each products}}
-                        <tr>
-                            <td>{{name}}</td>
-                            <td>${{price}}</td>
-                            <td>{{quantity}}</td>
-                        </tr>
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>${{price}}</td>
+                                <td>{{quantity}}</td>
+                            </tr>
                         {{/each}}
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
-
-
     </form>
-    <!--{{> my_form}}-->
-    <!--<ul>-->
-        <!--{{#each items}}-->
-            <!--{{>item}}-->
-        <!--{{/each}}-->
-    <!--</ul>-->
 </template>
-
-<!--<template name="my_form">-->
-    <!--<form class="Insert">-->
-        <!--<div class="text-center container-fluid">-->
-            <!--<div class="row">-->
-                <!--<div class="col-md-4">-->
-
-                <!--</div>-->
-                <!--<div class="col-md-4">-->
-                    <!--<div class="input-group">-->
-                        <!--<input type="text"  class="form-control" autofocus="" placeholder="Insert item" id="items" name="textbox1" style = "width: 100%;">-->
-                        <!--<button class="btn btn-info" type="submit" id="insert" >Submit</button>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="col-md-4">-->
-
-                <!--</div>-->
-
-            <!--</div>-->
-        <!--</div>-->
-
-    <!--</form>-->
-<!--</template>-->
-
-<!--<template name="item">-->
-    <!--<li class="{{#if checked}}checked{{/if}}">-->
-        <!--<button class="delete">&times;</button>-->
-        <!--<span class="title">{{title}}</span>-->
-    <!--</li>-->
-<!--</template>-->
 
 
 
@@ -131,7 +96,7 @@
 <template name="addNewProduct">
     <div class="container-fluid">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary">Go Back</button>
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
@@ -140,6 +105,41 @@
                 {{> quickForm collection="Products" id="insertProduct" type = "insert" class="new-prod-form"}}
             </div>
             <div class="col-md-9"></div>
+        </div>
+    </div>
+
+</template>
+
+
+<template name="removeProduct">
+    <div class="container-fluid">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary "> <i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+        </div>
+        <div class="row">
+            <h1>Remove a Product</h1>
+        </div>
+        <div class="container-fluid">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Left In Stock</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each products}}
+                    <tr>
+                        <td><button class="delete">&times;</button></td>
+                        <td>{{name}}</td>
+                        <td>${{price}}</td>
+                        <td>{{quantity}}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 

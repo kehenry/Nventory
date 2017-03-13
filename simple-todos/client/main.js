@@ -46,6 +46,10 @@ Template.home.events({
     event.preventDefault();
     FlowRouter.go('addNewProduct');
     console.log("add products here");
+  },'click .removeProduct': function(event){
+    event.preventDefault();
+    FlowRouter.go('removeProduct');
+    console.log("remove products here");
   }
 });
 
@@ -54,6 +58,16 @@ Template.addNewProduct.events({
         event.preventDefault();
         FlowRouter.go('home');
         console.log("returned home");
+    }
+});
+Template.removeProduct.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('home');
+        console.log("returned home");
+    },
+    'click .delete': function () {
+        Products.remove(this._id);
     }
 });
 
@@ -71,9 +85,10 @@ Tracker.autorun(function () {
     }
 });
 
-Template.home.helpers({
-    items() {
-        return Items.find({});
+
+Template.removeProduct.helpers({
+    products() {
+        return Products.find({});
     }
 });
 Template.home.helpers({

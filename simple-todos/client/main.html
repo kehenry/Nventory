@@ -52,6 +52,7 @@
                 </div>
                 <div class="col-md-8 text-right">
                     <button type="button" class="addNew btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add New Product</button>
+                    <button type="button" class="edit btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> edit Product</button>
                     <button type="button" class="removeProduct btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Product</button>
                 </div>
             </div>
@@ -78,6 +79,11 @@
                                 <td>${{price}}</td>
                                 <td>{{quantity}}</td>
                             </tr>
+                        {{else}}
+                            <div class="wrapper-message">
+                                <div class="title-message">Nventory is empty</div>
+                                <div class="subtitle-message">Add new produts above</div>
+                            </div>
                         {{/each}}
                         </tbody>
                     </table>
@@ -88,7 +94,46 @@
     </form>
 </template>
 
+<template name="editProduct">
+    <form class="edit form">
+    <div class="container-fluid">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+        </div>
 
+                <input type="text" id="updateName" placeholder="Insert new Name" />
+                <input type="text" id="updatePrice" placeholder="Insert new price" />
+                <input type="text" id="updateQuantity" placeholder="Insert new quantity" />
+    </div>
+
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Left In Stock</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each products}}
+                <tr>
+                    <td> <button type="button" class="editThis btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Apply</button>   {{name}}</td>
+                    <td>${{price}}</td>
+                    <td>{{quantity}}</td>
+                </tr>
+            {{else}}
+                <div class="wrapper-message">
+                    <div class="title-message">Nventory is empty</div>
+                    <div class="subtitle-message">Add new produts above</div>
+                </div>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    </form>
+
+</template>
 
 
 

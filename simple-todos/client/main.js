@@ -4,7 +4,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 import {Items} from '../collections/collections.js';
 
-
 Template.register.events({
   'submit form': function(event, template) {
     event.preventDefault();
@@ -50,7 +49,18 @@ Template.home.events({
     event.preventDefault();
     FlowRouter.go('removeProduct');
     console.log("remove products here");
-  }
+  }, 'click .edit': function(event){
+        event.preventDefault();
+        FlowRouter.go('editProduct');
+        console.log("edit products here");}
+});
+
+Template.editProduct.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('home');
+        console.log("returned home");
+    }
 });
 
 Template.addNewProduct.events({
@@ -96,7 +106,22 @@ Template.home.helpers({
         return Products.find({});
     }
 });
+Template.editProduct.helpers({
+    products() {
+        return Products.find({});
+    }
+});
+Template.editProduct.events({
+    'click .editThis': function(event,) {
+        event.preventDefault();
+        var newname = $("#updateName").val();
+        var newprice = $("#updatePrice").val();
+        var newquantity = $("#updateQuantity").val();
+        Products.update(this._id, {$set: {name: newname, price: newprice, quantity: newquantity}});
+    },
+   }
 
+);
 // Template.my_form.events({
 //     'submit .Insert': function( event ){   // also tried just 'submit', both work for me!
 //         console.log( 'Submitting...' );

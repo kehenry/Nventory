@@ -27,6 +27,12 @@ FlowRouter.route('/editProduct',{
         BlazeLayout.render('editProduct');
     }
 });
+FlowRouter.route('/adminTools',{
+    name:'adminTools',
+    action(){
+        BlazeLayout.render('adminTools');
+    }
+});
 
 FlowRouter.route('/addNewProduct',{
     name:'addNewProduct',

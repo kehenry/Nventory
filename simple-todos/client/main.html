@@ -33,7 +33,7 @@
                     <input type="text" id="email" placeholder="Enter your email here"><br>
                     <input type="password" id="userPin" placeholder="Enter a pin"><br>
                     <input type="submit" value="Register">
-                    <button type="button" class=" goLogin btn btn-secondary"><i class="glyphicon glyphicon-arrow-left"></i> Back to Login</button>
+                    <button type="button" class=" goLogin btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Login</button>
                 </div>
                 <div class="col-md-4"></div>
             </div>
@@ -51,11 +51,9 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-8 text-right">
-                        {{#if isInRole 'admin'}}
-                    <button type="button" class="addNew btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add New Product</button>
-                    <button type="button" class="edit btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> edit Product</button>
-                    <button type="button" class="removeProduct btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Product</button>
-                        {{/if}}
+                        <!--{{#if isInRole 'admin'}}-->
+                    <button type="button" class="adminTools btn btn-secondary"><i class="glyphicon glyphicon-cog"></i> Admin Tools</button>
+                        <!--{{/if}}-->
                 </div>
             </div>
         </div>
@@ -103,9 +101,9 @@
             <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
         </div>
 
-                <input type="text" id="updateName" placeholder="Insert new Name" />
-                <input type="text" id="updatePrice" placeholder="Insert new price" />
-                <input type="text" id="updateQuantity" placeholder="Insert new quantity" />
+                New Name: <input type="text" id="updateName" placeholder="Insert new Name" />
+                New Price: <input type="text" id="updatePrice" placeholder="Insert new price" />
+                <New></New> Quantity: <input type="text" id="updateQuantity" placeholder="Insert new quantity" />
     </div>
 
     <div class="container-fluid">
@@ -190,4 +188,28 @@
         </div>
     </div>
 
+</template>
+
+<template name="adminTools">
+    <div class="container-fluid">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+        </div>
+        <div class="row text-center" style="padding-top: 30px;">
+            <div class="row" style="padding-top: 10px;">
+                <button type="button" class="edit btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Edit Product</button>
+            </div>
+            <div class="row" style="padding-top: 10px;">
+                <button type="button" class="addNew btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add New Product</button>
+            </div>
+
+            <div class="row" style="padding-top: 10px;">
+                <button type="button" class="removeProduct btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Product</button>
+            </div>
+
+
+
+        </div>
+
+    </div>
 </template>

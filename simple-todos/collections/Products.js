@@ -15,8 +15,8 @@ ProductSchema = new SimpleSchema({
         label: "Name"
     },
     price:{
-        type: String,
-        label: "Price"
+        type: Number,
+        decimal: true
     },
     quantity:{
         type: Number,

@@ -13,11 +13,13 @@ Template.register.events({
       email: emailVar,
       password: pinVar
     });
+
     console.log(emailVar + " registered as ");
   },
     'click .goLogin': function(event){
         event.preventDefault();
         FlowRouter.go('login');
+
     }
 
 });
@@ -28,7 +30,7 @@ Template.login.events({
     var emailVar = template.find('#login-email').value;
     var pinVar = template.find('#login-userPin').value;
     Meteor.loginWithPassword(emailVar,pinVar);
-    console.log(emailVar + " logged in");
+    console.log(emailVar + " logged in" );
   },'click .register': function(event){
         event.preventDefault();
         FlowRouter.go('register');
@@ -41,40 +43,50 @@ Template.home.events({
     event.preventDefault();
     Meteor.logout();
     console.log("logged out");
-  },'click .addNew': function(event){
+  },'click .adminTools': function(event){
     event.preventDefault();
-    FlowRouter.go('addNewProduct');
+    FlowRouter.go('adminTools');
     console.log("add products here");
-  },'click .removeProduct': function(event){
-    event.preventDefault();
-    FlowRouter.go('removeProduct');
-    console.log("remove products here");
-  }, 'click .edit': function(event){
+  }
+});
+
+Template.adminTools.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('home');
+        console.log("returned home");
+    },'click .addNew': function(event){
+        event.preventDefault();
+        FlowRouter.go('addNewProduct');
+        console.log("add products here");
+    },'click .removeProduct': function(event){
+        event.preventDefault();
+        FlowRouter.go('removeProduct');
+        console.log("remove products here");
+    }, 'click .edit': function(event){
         event.preventDefault();
         FlowRouter.go('editProduct');
         console.log("edit products here");}
 });
 
+
 Template.editProduct.events({
     'click .goBack': function(event){
         event.preventDefault();
-        FlowRouter.go('home');
-        console.log("returned home");
+        FlowRouter.go('adminTools');
     }
 });
 
 Template.addNewProduct.events({
     'click .goBack': function(event){
         event.preventDefault();
-        FlowRouter.go('home');
-        console.log("returned home");
+        FlowRouter.go('adminTools');
     }
 });
 Template.removeProduct.events({
     'click .goBack': function(event){
         event.preventDefault();
-        FlowRouter.go('home');
-        console.log("returned home");
+        FlowRouter.go('adminTools');
     },
     'click .delete': function () {
         Products.remove(this._id);

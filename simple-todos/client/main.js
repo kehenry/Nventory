@@ -117,7 +117,9 @@ Template.editProduct.events({
         var newname = $("#updateName").val();
         var newprice = $("#updatePrice").val();
         var newquantity = $("#updateQuantity").val();
-        Products.update(this._id, {$set: {name: newname, price: newprice, quantity: newquantity}});
+        Products.update(this._id, {$set: {name: newname}});
+        Products.update(this._id, {$set: {price: newprice}});
+        Products.update(this._id, {$set: {quantity: newquantity}});
     },
    }
 

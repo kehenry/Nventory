@@ -13,7 +13,7 @@ Template.register.events({
       email: emailVar,
       password: pinVar
     });
-    console.log(emailVar + " registered as " + userType);
+    console.log(emailVar + " registered as ");
   },
     'click .goLogin': function(event){
         event.preventDefault();

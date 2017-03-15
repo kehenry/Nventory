@@ -34,10 +34,17 @@ FlowRouter.route('/adminTools',{
     }
 });
 
-FlowRouter.route('/addNewProduct',{
-    name:'addNewProduct',
+FlowRouter.route('/productPage',{
+    name:'productPage',
     action(){
-        BlazeLayout.render('addNewProduct');
+        BlazeLayout.render('productPage');
+    }
+});
+
+FlowRouter.route('/addProduct',{
+    name:'addProduct',
+    action(){
+        BlazeLayout.render('addProduct');
     }
 });
 FlowRouter.route('/removeProduct',{
@@ -54,10 +61,23 @@ FlowRouter.route('/labs',{
     }
 });
 
+FlowRouter.route('/checkoutPage',{
+    name:'checkoutPage',
+    action(){
+        BlazeLayout.render('checkoutPage');
+    }
+});
+
 FlowRouter.route('/addLab',{
     name:'addLab',
     action(){
         BlazeLayout.render('addLab');
+    }
+});
+FlowRouter.route('/newCheckout',{
+    name:'newCheckout',
+    action(){
+        BlazeLayout.render('newCheckout');
     }
 });
 

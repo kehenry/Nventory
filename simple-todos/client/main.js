@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import Products from '../collections/Products.js';
 import Labs from '../collections/Labs.js';
+import Checkouts from '../collections/Checkouts.js';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
@@ -57,29 +58,27 @@ Template.adminTools.events({
         event.preventDefault();
         FlowRouter.go('home');
         console.log("returned home");
-    },'click .addNew': function(event){
-        event.preventDefault();
-        FlowRouter.go('addNewProduct');
-        console.log("add products here");
-    },'click .removeProduct': function(event){
-        event.preventDefault();
-        FlowRouter.go('removeProduct');
-        console.log("remove products here");
-    }, 'click .edit': function(event){
-        event.preventDefault();
-        FlowRouter.go('editProduct');
-        console.log("edit products here");}
-        , 'click .labPage': function(event){
+    },
+        'click .labPage': function(event){
         event.preventDefault();
         FlowRouter.go('labPage');
-        console.log("view and edit labs here");}
+        console.log("view and edit labs here");
+    }, 'click .productPage': function(event){
+        event.preventDefault();
+        FlowRouter.go('productPage');
+        console.log("view and edit products here");
+    }
+        , 'click .checkoutPage': function(event){
+        event.preventDefault();
+        FlowRouter.go('checkoutPage');
+        console.log("view and add checkouts here");}
 });
 
 
 Template.editProduct.events({
     'click .goBack': function(event){
         event.preventDefault();
-        FlowRouter.go('adminTools');
+        FlowRouter.go('productPage');
     }
 });
 
@@ -104,10 +103,50 @@ Template.labPage.events({
     //     console.log("edit products here");}
 });
 
-Template.addNewProduct.events({
+Template.productPage.events({
     'click .goBack': function(event){
         event.preventDefault();
         FlowRouter.go('adminTools');
+    }
+    ,'click .newProduct': function(event){
+        event.preventDefault();
+        FlowRouter.go('addProduct');
+        console.log("add products here");
+    }
+    ,'click .removeProduct': function(event){
+        event.preventDefault();
+        FlowRouter.go('removeProduct');
+        console.log("remove products here");
+    }
+    , 'click .editProduct': function(event){
+        event.preventDefault();
+        FlowRouter.go('editProduct');
+        console.log("edit products here");}
+});
+Template.checkoutPage.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('adminTools');
+    }
+    ,'click .newCheckout': function(event){
+        event.preventDefault();
+        FlowRouter.go('newCheckout');
+    }
+
+});
+
+Template.newCheckout.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('checkoutPage');
+    }
+});
+
+
+Template.addProduct.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('productPage');
     }
 });
 
@@ -120,7 +159,7 @@ Template.addLab.events({
 Template.removeProduct.events({
     'click .goBack': function(event){
         event.preventDefault();
-        FlowRouter.go('adminTools');
+        FlowRouter.go('productPage');
     },
     'click .delete': function () {
         Products.remove(this._id);
@@ -147,6 +186,12 @@ Template.removeProduct.helpers({
         return Products.find({});
     }
 });
+
+Template.productPage.helpers({
+    products() {
+        return Products.find({});
+    }
+});
 Template.home.helpers({
     products() {
         return Products.find({});
@@ -163,7 +208,16 @@ Template.labPage.helpers({
         return Labs.find({});
     }
 });
+Template.checkoutPage.helpers({
+    checkouts() {
+        return Checkouts.find({});
+    }
+});
 Template.editProduct.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('productPage');
+    },
     'click .editThis': function(event,) {
         event.preventDefault();
         let newName = $("#updateName").val();

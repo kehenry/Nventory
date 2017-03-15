@@ -15,18 +15,31 @@ Checkouts.allow({
 
 CheckoutSchema = new SimpleSchema({
     products:{
-        type: [Products]
+        type: [Products],
+        label: "Products"
     },
     // total:{
     //     type: Number,
     //     decimal: true
     // }, TODO
     customer:{
-        type: Labs
+        type: Labs,
+        label: "Lab"
     },
+    date:{
+        type: Date,
+        label: "Date Created",
+        autoValue: function () {
+            return new Date()
+        },
+        autoform: {
+            type:"hidden"
+        }
+    }
     // costNumber:{
     //     type: CostNumbers
     // } TODO
 });
 
 Checkouts.attachSchema(CheckoutSchema);
+export default Checkouts;

@@ -80,6 +80,12 @@ FlowRouter.route('/newCheckout',{
         BlazeLayout.render('newCheckout');
     }
 });
+FlowRouter.route('/removeCheckout',{
+    name:'removeCheckout',
+    action(){
+        BlazeLayout.render('removeCheckout');
+    }
+});
 
 
 function checkLoggedIn (ctx, redirect) {

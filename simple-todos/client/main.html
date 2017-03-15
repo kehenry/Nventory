@@ -341,6 +341,7 @@
                 </div>
                 <div class="col-md-8 text-right">
                     <button type="button" class="newCheckout btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> New Checkout</button>
+                    <button type="button" class="removeCheckout btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Checkout</button>
                 </div>
             </div>
         </div>
@@ -392,6 +393,44 @@
                 {{> quickForm collection="Checkouts" id="insertCheckouts" type = "insert" class="new-checkout-form"}}
             </div>
             <div class="col-md-9"></div>
+        </div>
+    </div>
+
+</template>
+
+<template name="removeCheckout">
+    <div class="container-fluid">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary "> <i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+        </div>
+        <div class="row">
+            <h1>Remove a Checkout</h1>
+        </div>
+        <div class="container-fluid">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Checkout Date</th>
+                    <th>Customer</th>
+                    <th>Products</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each checkouts}}
+                    <tr>
+                        <td><button class="delete">&times;</button></td>
+                        <td>{{date}}</td>
+                        <td>{{customer}}</td>
+                        <td>{{products}}</td>
+                    </tr>
+                {{else}}
+                    <div class="wrapper-message">
+                        <div class="title-message">No checkouts yet </div>
+                    </div>
+                {{/each}}
+                </tbody>
+            </table>
         </div>
     </div>
 

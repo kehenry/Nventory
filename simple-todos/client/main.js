@@ -132,6 +132,11 @@ Template.checkoutPage.events({
         event.preventDefault();
         FlowRouter.go('newCheckout');
     }
+    ,'click .removeCheckout': function(event){
+        event.preventDefault();
+        FlowRouter.go('removeCheckout');
+        console.log("remove checkouts here");
+    }
 
 });
 
@@ -163,6 +168,15 @@ Template.removeProduct.events({
     },
     'click .delete': function () {
         Products.remove(this._id);
+    }
+});
+Template.removeCheckout.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('checkoutPage');
+    },
+    'click .delete': function () {
+        Checkouts.remove(this._id);
     }
 });
 
@@ -210,7 +224,16 @@ Template.labPage.helpers({
 });
 Template.checkoutPage.helpers({
     checkouts() {
-        return Checkouts.find({});
+        return Checkouts.find({},{
+            sort:{date:-1}
+        });
+    }
+});
+Template.removeCheckout.helpers({
+    checkouts() {
+        return Checkouts.find({},{
+            sort:{date:-1}
+        });
     }
 });
 Template.editProduct.events({

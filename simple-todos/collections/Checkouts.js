@@ -23,8 +23,8 @@ CheckoutSchema = new SimpleSchema({
     //     decimal: true
     // }, TODO
     customer:{
-        type: Labs,
-        label: "Lab"
+        type: String,
+        label: "Customer"
     },
     date:{
         type: Date,

@@ -197,30 +197,36 @@ Tracker.autorun(function () {
 
 Template.removeProduct.helpers({
     products() {
-        return Products.find({});
-    }
+        return Products.find({},{
+            sort:{name:1}
+        });    }
 });
 
 Template.productPage.helpers({
     products() {
-        return Products.find({});
-    }
+        return Products.find({},{
+            sort:{name:1}
+        });    }
 });
 Template.home.helpers({
     products() {
-        return Products.find({});
-    }
+        return Products.find({},{
+            sort:{name:1}
+        });    }
 });
 Template.editProduct.helpers({
     products() {
-        return Products.find({});
+        return Products.find({},{
+            sort:{name:1}
+        });
     }
 });
 
 Template.labPage.helpers({
     labs() {
-        return Labs.find({});
-    }
+        return Labs.find({},{
+            sort:{name:-1}
+        });    }
 });
 Template.checkoutPage.helpers({
     checkouts() {

@@ -47,6 +47,20 @@ FlowRouter.route('/removeProduct',{
     }
 });
 
+FlowRouter.route('/labs',{
+    name:'labPage',
+    action(){
+        BlazeLayout.render('labPage');
+    }
+});
+
+FlowRouter.route('/addLab',{
+    name:'addLab',
+    action(){
+        BlazeLayout.render('addLab');
+    }
+});
+
 
 function checkLoggedIn (ctx, redirect) {
     if (!Meteor.userId()) {

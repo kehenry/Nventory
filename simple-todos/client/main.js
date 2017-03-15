@@ -1,8 +1,10 @@
 import { Template } from 'meteor/templating';
+import Products from '../collections/Products.js';
+import Labs from '../collections/Labs.js';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
-import {Items} from '../collections/collections.js';
+
 
 Template.register.events({
   'submit form': function(event, template) {
@@ -67,6 +69,10 @@ Template.adminTools.events({
         event.preventDefault();
         FlowRouter.go('editProduct');
         console.log("edit products here");}
+        , 'click .labPage': function(event){
+        event.preventDefault();
+        FlowRouter.go('labPage');
+        console.log("view and edit labs here");}
 });
 
 
@@ -77,10 +83,38 @@ Template.editProduct.events({
     }
 });
 
+Template.labPage.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('adminTools');
+    }
+    ,'click .addLab': function(event){
+        event.preventDefault();
+        FlowRouter.go('addLab');
+        console.log("add products here");
+    }
+    // ,'click .removeLab': function(event){
+    //     event.preventDefault();
+    //     FlowRouter.go('removeLab');
+    //     console.log("remove products here");
+    // }
+    // , 'click .editLab': function(event){
+    //     event.preventDefault();
+    //     FlowRouter.go('editLab');
+    //     console.log("edit products here");}
+});
+
 Template.addNewProduct.events({
     'click .goBack': function(event){
         event.preventDefault();
         FlowRouter.go('adminTools');
+    }
+});
+
+Template.addLab.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('labPage');
     }
 });
 Template.removeProduct.events({
@@ -123,38 +157,22 @@ Template.editProduct.helpers({
         return Products.find({});
     }
 });
+
+Template.labPage.helpers({
+    labs() {
+        return Labs.find({});
+    }
+});
 Template.editProduct.events({
     'click .editThis': function(event,) {
         event.preventDefault();
-        var newname = $("#updateName").val();
-        var newprice = $("#updatePrice").val();
-        var newquantity = $("#updateQuantity").val();
-        Products.update(this._id, {$set: {name: newname}});
-        Products.update(this._id, {$set: {price: newprice}});
-        Products.update(this._id, {$set: {quantity: newquantity}});
+        let newName = $("#updateName").val();
+        let newPrice = $("#updatePrice").val();
+        let newQuantity = $("#updateQuantity").val();
+        Products.update(this._id, {$set: {name: newName}});
+        Products.update(this._id, {$set: {price: newPrice}});
+        Products.update(this._id, {$set: {quantity: newQuantity}});
     },
    }
 
 );
-// Template.my_form.events({
-//     'submit .Insert': function( event ){   // also tried just 'submit', both work for me!
-//         console.log( 'Submitting...' );
-//         event.preventDefault();
-//          name = event.target.textbox1.value;
-//         Items.insert({
-//             title: name,
-//         });
-//         event.target.textbox1.value = "";
-//     }
-// });
-
-// Template.item.events({
-//     /*'click .updoot'() {
-//         // Set the checked property to the opposite of its current value
-//          name1 = target.textbox1.value;
-//         Items.update(this._id, {$set: {title: "cat"}});
-//     },*/
-//     'click .delete'() {
-//         Items.remove(this._id);
-//     },
-// });

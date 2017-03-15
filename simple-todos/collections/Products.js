@@ -25,3 +25,5 @@ ProductSchema = new SimpleSchema({
 });
 
 Products.attachSchema(ProductSchema);
+
+export default Products;

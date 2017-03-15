@@ -33,7 +33,7 @@
                     <input type="text" id="email" placeholder="Enter your email here"><br>
                     <input type="password" id="userPin" placeholder="Enter a pin"><br>
                     <input type="submit" value="Register">
-                    <button type="button" class=" goLogin btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Login</button>
+                    <button type="button" class=" goLogin btn btn-secondary"><i class="glyphicon glyphicon-chevron-lefts"></i> Back to Login</button>
                 </div>
                 <div class="col-md-4"></div>
             </div>
@@ -155,6 +155,23 @@
 
 </template>
 
+<template name="addLab">
+    <div class="container-fluid">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+        </div>
+        <div class="row" style="padding-top:30px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <h1>Add New Lab</h1>
+                {{> quickForm collection="Labs" id="insertLab" type = "insert" class="new-lab-form"}}
+            </div>
+            <div class="col-md-9"></div>
+        </div>
+    </div>
+
+</template>
+
 
 <template name="removeProduct">
     <div class="container-fluid">
@@ -207,9 +224,58 @@
                 <button type="button" class="removeProduct btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Product</button>
             </div>
 
-
-
+            <div class="row" style="padding-top: 10px;">
+                <button type="button" class="labPage btn btn-secondary"><i class="glyphicon glyphicon-education"></i> Labs</button>
+            </div>
         </div>
-
     </div>
+</template>
+
+<template name="labPage">
+    <form>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col-md-1">
+                    <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i>  Go Back</button>
+                </div>
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-8 text-right">
+                    <button type="button" class="editLab btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Edit Lab</button>
+                    <button type="button" class="addLab btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add New Lab</button>
+                    <button type="button" class="removeLab btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Lab</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="row text-center" style="padding-bottom: 30px; ">
+                    <h1>Labs</h1>
+                </div>
+                <div class="container-fluid">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Lab Name</th>
+                            <th>Cost Numbers</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each labs}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{costNumbers}}</td>
+                            </tr>
+                        {{else}}
+                            <div class="wrapper-message">
+                                <div class="title-message">No labs to list</div>
+                            </div>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </form>
 </template>

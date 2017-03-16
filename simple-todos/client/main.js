@@ -50,7 +50,10 @@ Template.home.events({
     event.preventDefault();
     FlowRouter.go('adminTools');
     console.log("add products here");
-  }
+  },'click .newCheckout': function(event){
+        event.preventDefault();
+        FlowRouter.go('newCheckout');
+    }
 });
 
 Template.adminTools.events({

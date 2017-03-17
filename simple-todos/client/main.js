@@ -93,13 +93,13 @@ Template.labPage.events({
     ,'click .addLab': function(event){
         event.preventDefault();
         FlowRouter.go('addLab');
-        console.log("add products here");
+        console.log("add labs here");
     }
-    // ,'click .removeLab': function(event){
-    //     event.preventDefault();
-    //     FlowRouter.go('removeLab');
-    //     console.log("remove products here");
-    // }
+    ,'click .removeLab': function(event){
+        event.preventDefault();
+        FlowRouter.go('removeLab');
+        console.log("remove products here");
+    }
     // , 'click .editLab': function(event){
     //     event.preventDefault();
     //     FlowRouter.go('editLab');
@@ -182,6 +182,15 @@ Template.removeCheckout.events({
         Checkouts.remove(this._id);
     }
 });
+Template.removeLab.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('labPage');
+    },
+    'click .delete': function () {
+        Labs.remove(this._id);
+    }
+});
 
 // Template.home.events({
 //     'click.register': function(event){
@@ -228,7 +237,13 @@ Template.editProduct.helpers({
 Template.labPage.helpers({
     labs() {
         return Labs.find({},{
-            sort:{name:-1}
+            sort:{name:1}
+        });    }
+});
+Template.removeLab.helpers({
+    labs() {
+        return Labs.find({},{
+            sort:{name:1}
         });    }
 });
 Template.checkoutPage.helpers({

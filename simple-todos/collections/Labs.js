@@ -20,7 +20,8 @@ LabSchema = new SimpleSchema({
         label: "Name"
     },
     costNumbers:{
-        type: [CostNumbers]
+        type: [CostNumbers],
+        label:"Cost Numbers"
     }
 });
 

@@ -103,10 +103,16 @@
         <div class="row">
             <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
         </div>
+        <div class="row" style="padding: 20px;">
+            <div class="container">
+                New Name: <input type="text" id="updateName" placeholder="Insert name here" />
+                New Price: <input type="text" id="updatePrice" placeholder="Insert price here" />
+                New Quantity: <input type="text" id="updateQuantity" placeholder="Insert quantity here" />
+            </div>
 
-                New Name: <input type="text" id="updateName" placeholder="Insert new Name" />
-                New Price: <input type="text" id="updatePrice" placeholder="Insert new price" />
-                <New></New> Quantity: <input type="text" id="updateQuantity" placeholder="Insert new quantity" />
+        </div>
+
+
     </div>
 
     <div class="container-fluid animated slideInUp">
@@ -148,11 +154,11 @@
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <h1>Add New Product</h1>
                 {{> quickForm collection="Products" id="insertProduct" type = "insert" class="new-prod-form"}}
             </div>
-            <div class="col-md-9"></div>
+            <div class="col-md-8"></div>
         </div>
     </div>
 
@@ -165,11 +171,11 @@
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <h1>Add New Lab</h1>
                 {{> quickForm collection="Labs" id="insertLab" type = "insert" class="new-lab-form"}}
             </div>
-            <div class="col-md-9"></div>
+            <div class="col-md-8"></div>
         </div>
     </div>
 
@@ -241,7 +247,6 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-8 text-right">
-                    <button type="button" class="editLab btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Edit Lab</button>
                     <button type="button" class="addLab btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add New Lab</button>
                     <button type="button" class="removeLab btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Lab</button>
                 </div>
@@ -387,15 +392,15 @@
 <template name="newCheckout">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Checkouts</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <h1>Add New Checkout</h1>
                 {{> quickForm collection="Checkouts" id="insertCheckouts" type = "insert" class="new-checkout-form"}}
             </div>
-            <div class="col-md-9"></div>
+            <div class="col-md-8"></div>
         </div>
     </div>
 
@@ -430,6 +435,42 @@
                 {{else}}
                     <div class="wrapper-message">
                         <div class="title-message">No checkouts yet </div>
+                    </div>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</template>
+
+<template name="removeLab">
+    <div class="container-fluid animated fadeIn">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary "> <i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+        </div>
+        <div class="row">
+            <h1>Remove a Lab</h1>
+        </div>
+        <div class="container-fluid animated slideInUp">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Lab Name</th>
+                    <th>Cost Numbers</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each labs}}
+                    <tr>
+                        <td><button class="delete">&times;</button></td>
+                        <td>{{name}}</td>
+                        <td>{{costNumbers}}</td>
+                    </tr>
+                {{else}}
+                    <div class="wrapper-message">
+                        <div class="title-message">No labs to list</div>
                     </div>
                 {{/each}}
                 </tbody>

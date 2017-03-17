@@ -86,6 +86,12 @@ FlowRouter.route('/removeCheckout',{
         BlazeLayout.render('removeCheckout');
     }
 });
+FlowRouter.route('/removeLab',{
+    name:'removeLab',
+    action(){
+        BlazeLayout.render('removeLab');
+    }
+});
 
 
 function checkLoggedIn (ctx, redirect) {

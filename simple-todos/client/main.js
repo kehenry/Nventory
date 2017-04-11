@@ -32,7 +32,11 @@ Template.login.events({
     event.preventDefault();
     var emailVar = template.find('#login-email').value;
     var pinVar = template.find('#login-userPin').value;
-    Meteor.loginWithPassword(emailVar,pinVar);
+    Meteor.loginWithPassword(emailVar,pinVar,function (err) {
+        if(err){
+            alert("Incorrect email or password! Try again.");
+        }
+    });
     console.log(emailVar + " logged in" );
   },'click .register': function(event){
         event.preventDefault();

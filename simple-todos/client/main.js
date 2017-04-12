@@ -54,9 +54,10 @@ Template.home.events({
     event.preventDefault();
     FlowRouter.go('adminTools');
     console.log("add products here");
-  },'click .newCheckout': function(event){
+  },'click .newCheckout1': function(event){
         event.preventDefault();
-        FlowRouter.go('newCheckout');
+        FlowRouter.go('newCheckout1');
+        console.log("add new checkouts")
     }
 });
 
@@ -154,6 +155,13 @@ Template.newCheckout.events({
     }
 });
 
+Template.newCheckout1.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('home');
+    }
+});
+
 
 Template.addProduct.events({
     'click .goBack': function(event){
@@ -232,6 +240,7 @@ Template.home.helpers({
 });
 Template.editProduct.helpers({
     products() {
+        //Products.price().toFixed(2);
         return Products.find({},{
             sort:{name:1}
         });

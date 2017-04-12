@@ -59,7 +59,7 @@
                 <div class="col-md-8 text-right">
                         <!--{{#if isInRole 'admin'}}-->
                     <button type="button" class="adminTools btn btn-secondary"><i class="glyphicon glyphicon-cog"></i> Admin Tools</button>
-                    <button type="button" class="newCheckout btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> New Checkout</button>
+                    <button type="button" class="newCheckout1 btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> New Checkout </button>
                         <!--{{/if}}-->
                 </div>
             </div>
@@ -147,9 +147,6 @@
     </form>
 
 </template>
-
-
-
 
 <template name="addProduct">
     <div class="container-fluid animated fadeIn">
@@ -386,6 +383,7 @@
                                 <td>{{date}}</td>
                                 <td>{{customer}}</td>
                                 <td>{{products}}</td>
+                                <td>{{quantity1}}</td>
                             </tr>
                         {{else}}
                             <div class="wrapper-message">
@@ -406,6 +404,23 @@
     <div class="container-fluid animated fadeIn">
         <div class="row">
             <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Checkouts</button>
+        </div>
+        <div class="row" style="padding-top:30px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <h1>Add New Checkout</h1>
+                {{> quickForm collection="Checkouts" id="insertCheckouts" type = "insert" class="new-checkout-form"}}
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+    </div>
+
+</template>
+
+<template name="newCheckout1">
+    <div class="container-fluid animated fadeIn">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Home</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>

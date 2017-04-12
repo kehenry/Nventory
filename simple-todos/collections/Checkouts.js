@@ -22,6 +22,10 @@ CheckoutSchema = new SimpleSchema({
     //     type: Number,
     //     decimal: true
     // }, TODO
+    quantity1:{
+        type: Number,
+        label:"Quantity"
+    },
     customer:{
         type: String,
         label: "Customer"

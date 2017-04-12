@@ -80,6 +80,13 @@ FlowRouter.route('/newCheckout',{
         BlazeLayout.render('newCheckout');
     }
 });
+
+FlowRouter.route('/newCheckout1',{
+    name:'newCheckout1',
+    action(){
+        BlazeLayout.render('newCheckout1');
+    }
+});
 FlowRouter.route('/removeCheckout',{
     name:'removeCheckout',
     action(){

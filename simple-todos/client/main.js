@@ -181,12 +181,7 @@ Template.newCheckout.events({
     }
 });
 
-Template.newCheckout1.events({
-    'click .goBack': function(event){
-        event.preventDefault();
-        FlowRouter.go('home');
-    }
-});
+
 
 
 Template.addProduct.events({

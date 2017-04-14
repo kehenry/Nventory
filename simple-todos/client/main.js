@@ -1,3 +1,4 @@
+
 import { Template } from 'meteor/templating';
 import Products from '../collections/Products.js';
 import Labs from '../collections/Labs.js';
@@ -6,39 +7,60 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
 
+// validating email
+var isEmail = function(value){
+    var filter=/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+    if(filter.test(value)){
+        return true
+    }
+    Bert.alert("Invalid email or empty.",'warning','fixed-top');
+    return false;
+};
+
 
 Template.register.events({
-  'submit form': function(event, template) {
-    event.preventDefault();
-    var emailVar = template.find('#email').value;
-    var pinVar = template.find('#userPin').value;
-    Accounts.createUser({
-      email: emailVar,
-      password: pinVar
-    });
+    'submit form': function(event, template) {
+        event.preventDefault();
+        var emailVar = template.find('#email').value;
+        var pinVar = template.find('#userPin').value;
 
-    console.log(emailVar + " registered as ");
-  },
-    'click .goLogin': function(event){
+        if (isEmail(emailVar)) {
+            Accounts.createUser({
+                email: emailVar,
+                password: pinVar
+            });
+            console.log(emailVar + " registered as ");
+            FlowRouter.go('login');
+
+        }
+
+        return false;// prevent the submission
+
+        /*   console.log(emailVar + " registered as ");
+         },
+         'click .goLogin': function(event){
+         event.preventDefault();
+         */
+    },
+    'click .goLogin': function(event) {
         event.preventDefault();
         FlowRouter.go('login');
-
     }
-
 });
 
 Template.login.events({
-  'submit form': function(event, template) {
-    event.preventDefault();
-    var emailVar = template.find('#login-email').value;
-    var pinVar = template.find('#login-userPin').value;
-    Meteor.loginWithPassword(emailVar,pinVar,function (err) {
-        if(err){
-            alert("Incorrect email or password! Try again.");
-        }
-    });
-    console.log(emailVar + " logged in" );
-  },'click .register': function(event){
+    'submit form': function(event, template) {FlowRouter.go('login');
+        event.preventDefault();
+        var emailVar = template.find('#login-email').value;
+        var pinVar = template.find('#login-userPin').value;
+        Meteor.loginWithPassword(emailVar,pinVar,function (err) {
+            if(err){
+                Bert.alert("Incorrect email or password! Try again.",'warning','fixed-top');
+            }
+        });
+        console.log(emailVar + " logged in" );
+    },'click .register': function(event){
         event.preventDefault();
         FlowRouter.go('register');
         console.log("register here");
@@ -46,17 +68,18 @@ Template.login.events({
 });
 
 Template.home.events({
-  'click .logout': function(event){
-    event.preventDefault();
-    Meteor.logout();
-    console.log("logged out");
-  },'click .adminTools': function(event){
-    event.preventDefault();
-    FlowRouter.go('adminTools');
-    console.log("add products here");
-  },'click .newCheckout': function(event){
+    'click .logout': function(event){
+        event.preventDefault();
+        Meteor.logout();
+        console.log("logged out");
+    },'click .adminTools': function(event){
+        event.preventDefault();
+        FlowRouter.go('adminTools');
+        console.log("add products here");
+    },'click .newCheckout1': function(event){
         event.preventDefault();
         FlowRouter.go('newCheckout');
+        console.log("add new checkouts")
     }
 });
 
@@ -66,7 +89,7 @@ Template.adminTools.events({
         FlowRouter.go('home');
         console.log("returned home");
     },
-        'click .labPage': function(event){
+    'click .labPage': function(event){
         event.preventDefault();
         FlowRouter.go('labPage');
         console.log("view and edit labs here");
@@ -75,7 +98,7 @@ Template.adminTools.events({
         FlowRouter.go('productPage');
         console.log("view and edit products here");
     }
-        , 'click .checkoutPage': function(event){
+    , 'click .checkoutPage': function(event){
         event.preventDefault();
         FlowRouter.go('checkoutPage');
         console.log("view and add checkouts here");}
@@ -151,6 +174,17 @@ Template.newCheckout.events({
     'click .goBack': function(event){
         event.preventDefault();
         FlowRouter.go('checkoutPage');
+    },
+    'click .goHome': function(event){
+        event.preventDefault();
+        FlowRouter.go('home');
+    }
+});
+
+Template.newCheckout1.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('home');
     }
 });
 
@@ -232,6 +266,7 @@ Template.home.helpers({
 });
 Template.editProduct.helpers({
     products() {
+        //Products.price().toFixed(2);
         return Products.find({},{
             sort:{name:1}
         });
@@ -250,6 +285,12 @@ Template.removeLab.helpers({
             sort:{name:1}
         });    }
 });
+
+// global template for dates
+Template.registerHelper('formatDate', function(date) {
+    return moment(date).format('LLL');
+});
+
 Template.checkoutPage.helpers({
     checkouts() {
         return Checkouts.find({},{
@@ -257,6 +298,7 @@ Template.checkoutPage.helpers({
         });
     }
 });
+
 Template.removeCheckout.helpers({
     checkouts() {
         return Checkouts.find({},{
@@ -265,19 +307,19 @@ Template.removeCheckout.helpers({
     }
 });
 Template.editProduct.events({
-    'click .goBack': function(event){
-        event.preventDefault();
-        FlowRouter.go('productPage');
-    },
-    'click .editThis': function(event,) {
-        event.preventDefault();
-        let newName = $("#updateName").val();
-        let newPrice = $("#updatePrice").val();
-        let newQuantity = $("#updateQuantity").val();
-        Products.update(this._id, {$set: {name: newName}});
-        Products.update(this._id, {$set: {price: newPrice}});
-        Products.update(this._id, {$set: {quantity: newQuantity}});
-    },
-   }
+        'click .goBack': function(event){
+            event.preventDefault();
+            FlowRouter.go('productPage');
+        },
+        'click .editThis': function(event,) {
+            event.preventDefault();
+            let newName = $("#updateName").val();
+            let newPrice = $("#updatePrice").val();
+            let newQuantity = $("#updateQuantity").val();
+            Products.update(this._id, {$set: {name: newName}});
+            Products.update(this._id, {$set: {price: newPrice}});
+            Products.update(this._id, {$set: {quantity: newQuantity}});
+        },
+    }
 
 );

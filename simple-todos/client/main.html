@@ -1,4 +1,5 @@
 
+
 <template name="login">
     <head>
         <title>Nventory</title>
@@ -57,9 +58,9 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-8 text-right">
-                        <!--{{#if isInRole 'admin'}}-->
+                <!--{{#if isInRole 'admin'}}-->
                     <button type="button" class="adminTools btn btn-secondary"><i class="glyphicon glyphicon-cog"></i> Admin Tools</button>
-                    <button type="button" class="newCheckout btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> New Checkout</button>
+                    <button type="button" class="newCheckout1 btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> New Checkout </button>
                         <!--{{/if}}-->
                 </div>
             </div>
@@ -103,53 +104,50 @@
 
 <template name="editProduct">
     <form class="edit form animated fadeIn">
-    <div class="container-fluid">
-        <div class="row">
-            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
-        </div>
-        <div class="row" style="padding: 20px;">
-            <div class="container">
-                New Name: <input type="text" id="updateName" placeholder="Insert name here" />
-                New Price: <input type="text" id="updatePrice" placeholder="Insert price here" />
-                New Quantity: <input type="text" id="updateQuantity" placeholder="Insert quantity here" />
+        <div class="container-fluid">
+            <div class="row">
+                <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            </div>
+            <div class="row" style="padding: 20px;">
+                <div class="container">
+                    New Name: <input type="text" id="updateName" placeholder="Insert name here" />
+                    New Price: <input type="text" id="updatePrice" placeholder="Insert price here" />
+                    New Quantity: <input type="text" id="updateQuantity" placeholder="Insert quantity here" />
+                </div>
+
             </div>
 
+
         </div>
 
-
-    </div>
-
-    <div class="container-fluid animated slideInUp">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Left In Stock</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each products}}
+        <div class="container-fluid animated slideInUp">
+            <table class="table">
+                <thead>
                 <tr>
-                    <td> <button type="button" class="editThis btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Apply</button>   {{name}}</td>
-                    <td>${{price}}</td>
-                    <td>{{quantity}}</td>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Left In Stock</th>
                 </tr>
-            {{else}}
-                <div class="wrapper-message">
-                    <div class="title-message">Nventory is empty</div>
-                    <div class="subtitle-message">Add new produts above</div>
-                </div>
-            {{/each}}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                {{#each products}}
+                    <tr>
+                        <td> <button type="button" class="editThis btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Apply</button>   {{name}}</td>
+                        <td>${{price}}</td>
+                        <td>{{quantity}}</td>
+                    </tr>
+                {{else}}
+                    <div class="wrapper-message">
+                        <div class="title-message">Nventory is empty</div>
+                        <div class="subtitle-message">Add new produts above</div>
+                    </div>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
     </form>
 
 </template>
-
-
-
 
 <template name="addProduct">
     <div class="container-fluid animated fadeIn">
@@ -405,7 +403,25 @@
 <template name="newCheckout">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Checkouts</button>
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-shopping-cart"></i> Checkouts</button>
+            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home </button>
+        </div>
+        <div class="row" style="padding-top:30px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <h1>Add New Checkout</h1>
+                {{> quickForm collection="Checkouts" id="insertCheckouts" type = "insert" class="new-checkout-form"}}
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+    </div>
+
+</template>
+
+<template name="newCheckout1">
+    <div class="container-fluid animated fadeIn">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Home</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
@@ -441,7 +457,7 @@
                 {{#each checkouts}}
                     <tr>
                         <td><button class="delete">&times;</button></td>
-                        <td>{{date}}</td>
+                        <td>{{formatDate}}</td>
                         <td>{{customer}}</td>
                         <td>{{products}}</td>
                     </tr>

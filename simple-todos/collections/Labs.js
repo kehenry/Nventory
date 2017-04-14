@@ -13,15 +13,15 @@ Labs.allow({
         return !!userId;
     }
 });
-
 LabSchema = new SimpleSchema({
     name:{
         type: String,
+        regEx:/^[a-zA-Z ]+$/,
         label: "Name"
     },
     costNumbers:{
         type: [CostNumbers],
-        label:"Cost Numbers"
+        label:"Cost Number"
     }
 });
 

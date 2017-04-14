@@ -13,6 +13,8 @@ Checkouts.allow({
     }
 });
 
+
+
 CheckoutSchema = new SimpleSchema({
     products:{
         type: [Products],
@@ -24,6 +26,7 @@ CheckoutSchema = new SimpleSchema({
     // }, TODO
     customer:{
         type: String,
+        regEx:/^[a-zA-Z ]+$/,
         label: "Customer"
     },
     date:{

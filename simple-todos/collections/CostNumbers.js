@@ -15,6 +15,8 @@ CostNumbers.allow({
 CostNumberSchema = new SimpleSchema({
     number:{
         type: Number,
+        min: 10000000,
+        max: 100000000000000,
         label: "Number"
     }
 });

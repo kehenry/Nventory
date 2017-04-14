@@ -101,6 +101,7 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/client_main.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/server_main.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/server_tests.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/fortawesome_fontawesome/4.4.0_1/web.browser/upstream/css/font-awesome.css" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/url_client.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/client_tests.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/localstorage_token.js" />
@@ -114,9 +115,11 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/accounts_client.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/accounts_rate_limit.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/accounts_server.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/themeteorchef_bert/2.1.2/web.browser/bert.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/accounts_ui.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_autoform/5.8.1/web.browser/inputTypes/value-converters.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dropdown.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/themeteorchef_bert/2.1.2/web.browser/templates/bert-alert.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dialogs.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_session.js" />
@@ -492,6 +495,7 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/client_main.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/server_main.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/server_tests.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/fortawesome_fontawesome/4.4.0_1/web.browser/upstream/css/font-awesome.css" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/url_client.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/client_tests.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/localstorage_token.js" />
@@ -505,9 +509,11 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/accounts_client.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/accounts_rate_limit.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-base/1.2.15/web.browser/accounts_server.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/themeteorchef_bert/2.1.2/web.browser/bert.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/accounts_ui.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/aldeed_autoform/5.8.1/web.browser/inputTypes/value-converters.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dropdown.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/themeteorchef_bert/2.1.2/web.browser/templates/bert-alert.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_dialogs.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/accounts-ui-unstyled/1.2.1/web.browser/login_buttons_session.js" />

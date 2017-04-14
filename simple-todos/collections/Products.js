@@ -12,14 +12,17 @@ Products.allow({
 ProductSchema = new SimpleSchema({
     name:{
         type: String,
+        regEx:/^[a-zA-Z ]+$/,
         label: "Name"
     },
     price:{
-        type: Number,
-        decimal: true
+        type: String,
+        regEx:/^[0-9]*(\.\d{2})$/,
+        label: "Price"
     },
     quantity:{
         type: Number,
+        min: 0,
         label:"Quantity"
     }
 });

@@ -384,6 +384,7 @@
                                 <td>{{date}}</td>
                                 <td>{{customer}}</td>
                                 <td>{{products}}</td>
+                                <td>{{quantity1}}</td>
                             </tr>
                         {{else}}
                             <div class="wrapper-message">
@@ -405,6 +406,23 @@
         <div class="row">
             <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-shopping-cart"></i> Checkouts</button>
             <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home </button>
+        </div>
+        <div class="row" style="padding-top:30px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <h1>Add New Checkout</h1>
+                {{> quickForm collection="Checkouts" id="insertCheckouts" type = "insert" class="new-checkout-form"}}
+            </div>
+            <div class="col-md-8"></div>
+        </div>
+    </div>
+
+</template>
+
+<template name="newCheckout1">
+    <div class="container-fluid animated fadeIn">
+        <div class="row">
+            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Back to Home</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>

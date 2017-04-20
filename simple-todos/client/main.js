@@ -64,10 +64,13 @@ Template.login.events({
         event.preventDefault();
         FlowRouter.go('register');
         console.log("register here");
+    },'click .addAdmin': function(event){
+        event.preventDefault();
+        FlowRouter.go('addAdmin');
     }
 });
 
-Template.home.events({
+Template.adminhome.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
@@ -82,12 +85,23 @@ Template.home.events({
         console.log("add new checkouts")
     }
 });
+Template.home.events({
+    'click .logout': function(event){
+        event.preventDefault();
+        Meteor.logout();
+        console.log("logged out");
+    }
+});
 
 Template.adminTools.events({
     'click .goBack': function(event){
         event.preventDefault();
         FlowRouter.go('home');
         console.log("returned home");
+    },
+    'click .addadmin': function(event){
+        event.preventDefault();
+        FlowRouter.go('addAdmin');
     },
     'click .labPage': function(event){
         event.preventDefault();
@@ -109,6 +123,12 @@ Template.editProduct.events({
     'click .goBack': function(event){
         event.preventDefault();
         FlowRouter.go('productPage');
+    }
+});
+Template.addAdmin.events({
+    'click .goBack': function(event){
+        event.preventDefault();
+        FlowRouter.go('login');
     }
 });
 
@@ -254,6 +274,12 @@ Template.productPage.helpers({
         });    }
 });
 Template.home.helpers({
+    products() {
+        return Products.find({},{
+            sort:{name:1}
+        });    }
+});
+Template.adminhome.helpers({
     products() {
         return Products.find({},{
             sort:{name:1}

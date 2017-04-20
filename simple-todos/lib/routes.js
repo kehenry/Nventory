@@ -1,10 +1,18 @@
 //import 'simple-todos/client/main.js';
+import Admins from '../collections/Admins.js';
 
 
 FlowRouter.route('/register',{
         name:'register',
         action(){
             BlazeLayout.render('register');
+        }
+});
+FlowRouter.route('/adminhome',{
+        name:'adminhome',
+        triggersEnter: [checkLoggedIn],
+        action(){
+            BlazeLayout.render('adminhome');
         }
 });
 FlowRouter.route('/home',{
@@ -99,6 +107,12 @@ FlowRouter.route('/removeLab',{
         BlazeLayout.render('removeLab');
     }
 });
+FlowRouter.route('/addAmin',{
+    name:'addAdmin',
+    action(){
+        BlazeLayout.render('addAdmin');
+    }
+});
 
 
 function checkLoggedIn (ctx, redirect) {
@@ -108,12 +122,27 @@ function checkLoggedIn (ctx, redirect) {
 };
 
 function redirectIfLoggedIn (ctx, redirect) {
-    if (Meteor.userId()) {
-        redirect('/home');
+
+
+    if(Meteor.userId()){
+        var currentEmail = Meteor.user().emails[0].address;
+        if(Admins.findOne({email:currentEmail})){
+            redirect('/adminhome');
+        }
+        else{
+            redirect('home');
+        }
     }
 };
 
 Accounts.onLogin(function () {
-    FlowRouter.go('home');
+    var currentEmail = Meteor.user().emails[0].address;
+    if(Admins.findOne({email:currentEmail})){
+        FlowRouter.go('/adminhome');
+    }
+    else{
+        FlowRouter.go('home');
+    }
+
 });
 

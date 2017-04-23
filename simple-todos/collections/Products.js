@@ -12,7 +12,7 @@ Products.allow({
 ProductSchema = new SimpleSchema({
     name:{
         type: String,
-        regEx:/^[a-zA-Z ]+$/,
+        regEx:/^[a-zA-Z0-9 ]+$/,
         label: "Name"
     },
     price:{

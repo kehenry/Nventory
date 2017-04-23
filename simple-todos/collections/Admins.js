@@ -15,6 +15,7 @@ Admins.allow({
 AdminSchema = new SimpleSchema({
     email:{
         type: String,
+        regEx: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/,
         label: "Email"
     }
 });

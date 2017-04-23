@@ -96,7 +96,7 @@ Template.home.events({
 Template.adminTools.events({
     'click .goBack': function(event){
         event.preventDefault();
-        FlowRouter.go('home');
+        FlowRouter.go('adminhome');
         console.log("returned home");
     },
     'click .addadmin': function(event){
@@ -197,7 +197,7 @@ Template.newCheckout.events({
     },
     'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('home');
+        FlowRouter.go('adminhome');
     }
 });
 

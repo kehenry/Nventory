@@ -20,8 +20,10 @@ LabSchema = new SimpleSchema({
         label: "Name"
     },
     costNumbers:{
-        type: [CostNumbers],
-        label:"Cost Number"
+        type: Number,
+        min: 200000000000,
+        max: 300000000000,
+        label: "Cost Number"
     }
 });
 

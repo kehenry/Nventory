@@ -19,11 +19,10 @@ LabSchema = new SimpleSchema({
         regEx:/^[a-zA-Z ]+$/,
         label: "Name"
     },
-    costNumbers:{
-        type: Number,
-        min: 200000000000,
-        max: 300000000000,
-        label: "Cost Number"
+    room:{
+        type: String,
+        regEx:/^[A-Z]?[0-9]{1,4}$/,
+        label: "Room"
     }
 });
 

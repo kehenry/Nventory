@@ -6,13 +6,11 @@
     </head>
     <form>
         <div class="container text-center animated">
-            <!--<div class="row">-->
-                <!--<button type="button" class="addAdmin btn btn-secondary">Add Admin</button>-->
-            <!--</div>-->
             <div class="row animated fadeIn" style="padding-top:100px;">
                 <img src="/nventorylogo.jpg" width="400" height="100">
+                <h1>Sign in</h1>
             </div>
-            <div class="row animated slideInUp" style="padding-top:20px;">
+            <div class="row animated slideInUp" style="padding-top:10px;">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <input type="text" id="login-email" placeholder="Enter your email here"><br>
@@ -21,6 +19,7 @@
                     <button type="button" class="register btn btn-secondary">Register New User <i class="glyphicon glyphicon-chevron-right"></i></button>
                 </div>
                 <div class="col-md-4"></div>
+                <p>Contact an administrative user in the stockroom if you have issues logging in or forgot your password.</p>
             </div>
         </div>
     </form>
@@ -35,9 +34,10 @@
         <div class="container text-center animated fadeIn">
             <div class="row animated fadeIn" style="padding-top:100px;">
                 <img src="/nventorylogo.jpg" width="400" height="100">
-            </div>
-            <div class="row">
                 <h1 style="padding-bottom:10px;">New User</h1>
+
+            </div>
+            <div class="row animated slideInUp">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <input type="text" id="email" placeholder="Enter your email here"><br>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-md-8 text-right">
                     <button type="button" class="adminTools btn btn-secondary"><i class="glyphicon glyphicon-cog"></i> Admin Tools</button>
-                    <button type="button" class="newCheckout1 btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> New Checkout </button>
+                    <button type="button" class="newCheckout btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> New Checkout </button>
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@
     <form class="edit form animated fadeIn">
         <div class="container-fluid">
             <div class="row">
-                <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+                <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
             </div>
             <div class="row" style="padding: 20px;">
                 <div class="container">
@@ -203,7 +203,7 @@
 <template name="addProduct">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
@@ -217,15 +217,126 @@
 
 </template>
 
+<template name="newCheckout">
+    <form>
+        <div class="container-fluid animated fadeIn">
+            <div class="row">
+                <button type="button" class="goCheckouts btn btn-secondary"><i class="glyphicon glyphicon-shopping-cart"></i> Go to Checkouts</button>
+                <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
+            </div>
+            <div class="container-fluid" style="padding-top:30px;padding-bottom:30px;">
+                <h1>New Checkout</h1>
+            </div>
+            <div class="container-fluid">
+                <p>
+                    Select Lab/Customer:
+                    <select id="customer">
+                        {{#each labs}}
+                            <option value="{{name}}"> {{name}}</option>
+                        {{/each}}
+                    </select>
+                    <button type="button" class="addLab btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> New Lab/Customer</button>
+                </p>
+                <p>
+                    Select Product:
+                    <select id="product">
+                        {{#each products}}
+                            <option value="{{name}}"> {{name}}, {{quantity}} in stock</option>
+                        {{/each}}
+                    </select>
+                    <button type="button" class="newProduct btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> New Product</button>
+                </p>
+                <p>
+                    Quantity:
+                    <input type="text" id="quantity">
+                </p>
+                <input type="submit" value="Checkout">
+
+            </div>
+        </div>
+    </form>
+
+</template>
+
+<template name="updateStock">
+    <form>
+        <div class="container-fluid animated fadeIn">
+            <div class="row">
+                <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
+                <button type="button" class="goProducts btn btn-secondary"><i class="glyphicon glyphicon-th"></i> Go to Products</button>
+            </div>
+            <div class="container-fluid" style="padding-top:30px;padding-bottom:30px;">
+                <h1>Update Stock</h1>
+            </div>
+            <div class="container-fluid">
+                <p>
+                    Select Product to Update:
+                    <select id="product">
+                        {{#each products}}
+                            <option value="{{name}}"> {{name}}, ${{price}}, {{quantity}} in stock</option>
+                        {{/each}}
+                    </select>
+                </p>
+                <p>
+                    New Quantity (must be a valid integer):
+                    <input type="number" id="newQuan">
+                </p>
+                <p>
+                        New Price (must be in 0.00 format):
+                    <input type="number" id="newPrice">
+                </p>
+                <input type="submit" value="Update">
+
+            </div>
+        </div>
+    </form>
+
+</template>
+
+<template name="editLab">
+    <form>
+        <div class="container-fluid animated fadeIn">
+            <div class="row">
+                <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
+                <button type="button" class="goLabs btn btn-secondary"><i class="glyphicon glyphicon-education"></i> Go to Labs</button>
+            </div>
+            <div class="container-fluid" style="padding-top:30px;padding-bottom:30px;">
+                <h1>Edit Lab</h1>
+            </div>
+            <div class="container-fluid">
+                <p>
+                    Select Lab to Edit:
+                    <select id="lab">
+                        {{#each labs}}
+                            <option value="{{name}}"> {{name}}, {{room}}</option>
+                        {{/each}}
+                    </select>
+                </p>
+                <p>
+                    New Room (ex: E151, 232, etc.):
+                    <input type="text" id="newRoom">
+                </p>
+                <input type="submit" value="Update">
+
+            </div>
+        </div>
+    </form>
+
+</template>
+
+
 <template name="addAdmin">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
             <div class="col-md-3">
                 <h1>Add New Admin</h1>
+                <p>
+                    Enter the email of the user you want to grant admin privileges to here.
+                </p>
                 {{> quickForm collection="Admins" id="insertAdmin" type = "insert" class="new-prod-form"}}
             </div>
             <div class="col-md-8"></div>
@@ -237,7 +348,7 @@
 <template name="addLab">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
         </div>
         <div class="row" style="padding-top:30px;">
             <div class="col-md-1"></div>
@@ -255,7 +366,7 @@
 <template name="removeProduct">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary "> <i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
         </div>
         <div class="row">
             <h1>Remove a Product</h1>
@@ -290,8 +401,8 @@
     <div class="container-fluid animated fadeIn">
         <div class="row">
             <div class="col-md-3">
-                <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
-                <button type="button" class="addadmin btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add Admin</button>
+                <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
+                <button type="button" class="addadmin btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> New Admin User</button>
             </div>
             <div class="col-md-6 text-center">
                 <img src="/nventorylogo.jpg" width="200" height="50">
@@ -312,8 +423,61 @@
             <div class="row" style="padding-top: 10px;">
                 <button type="button" class="checkoutPage btn btn-lg btn-secondary"><i class="glyphicon glyphicon-shopping-cart"></i> Checkouts</button>
             </div>
+            <div class="row" style="padding-top: 10px;">
+                <button type="button" class="users btn btn-lg btn-secondary"><i class="glyphicon glyphicon-user"></i> Users</button>
+            </div>
         </div>
     </div>
+</template>
+
+<template name="users">
+    <form class="animated fadeIn">
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col-md-1">
+                    <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
+                </div>
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-8 text-right">
+                </div>
+            </div>
+            <div class="container">
+                <h1>
+                    User Accounts
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="container-fluid animated slideInUp">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Pin</th>
+                            <th>Date Created</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each useraccounts}}
+                            <tr>
+                                <td>{{email}}</td>
+                                <td>{{pin}}</td>
+                                <td>{{date}}</td>
+                            </tr>
+                        {{else}}
+                            <div class="wrapper-message">
+                                <div class="title-message">No users to list</div>
+                            </div>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </form>
 </template>
 
 <template name="labPage">
@@ -321,12 +485,13 @@
         <div class="row">
             <div class="container-fluid">
                 <div class="col-md-1">
-                    <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i>  Go Back</button>
+                    <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
 
                 </div>
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-8 text-right">
+                    <button type="button" class="editLab btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Edit Lab</button>
                     <button type="button" class="addLab btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> Add New Lab</button>
                     <button type="button" class="removeLab btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Lab</button>
                 </div>
@@ -342,14 +507,14 @@
                         <thead>
                         <tr>
                             <th>Lab Name</th>
-                            <th>Cost Numbers</th>
+                            <th>Room</th>
                         </tr>
                         </thead>
                         <tbody>
                         {{#each labs}}
                             <tr>
                                 <td>{{name}}</td>
-                                <td>{{costNumbers}}</td>
+                                <td>{{room}}</td>
                             </tr>
                         {{else}}
                             <div class="wrapper-message">
@@ -371,14 +536,15 @@
         <div class="row">
             <div class="container-fluid">
                 <div class="col-md-1">
-                    <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i>  Go Back</button>
+                    <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
                 </div>
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-8 text-right">
-                    <button type="button" class="editProduct btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Edit Product</button>
+                    <button type="button" class="updateStock btn btn-secondary"><i class="glyphicon glyphicon-pencil"></i> Update Stock</button>
                     <button type="button" class="newProduct btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> New Product</button>
                     <button type="button" class="removeProduct btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Product</button>
+
                 </div>
             </div>
         </div>
@@ -423,12 +589,12 @@
         <div class="row">
             <div class="container-fluid">
                 <div class="col-md-1">
-                    <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-chevron-left"></i>  Go Back</button>
+                    <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
                 </div>
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-8 text-right">
-                    <button type="button" class="newCheckout btn btn-secondary"><i class="glyphicon glyphicon-plus"></i> New Checkout</button>
+                    <button type="button" class="newCheckout btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> New Checkout</button>
                     <button type="button" class="removeCheckout btn btn-secondary"><i class="glyphicon glyphicon-remove"></i> Remove Checkout</button>
                 </div>
             </div>
@@ -444,7 +610,8 @@
                         <tr>
                             <th>Checkout Date</th>
                             <th>Customer</th>
-                            <th>Products</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -452,8 +619,8 @@
                             <tr>
                                 <td>{{date}}</td>
                                 <td>{{customer}}</td>
-                                <td>{{products}}</td>
-                                <td>{{quantity1}}</td>
+                                <td>{{product}}</td>
+                                <td>{{quantity}}</td>
                             </tr>
                         {{else}}
                             <div class="wrapper-message">
@@ -470,30 +637,12 @@
 </template>
 
 
-<template name="newCheckout">
-    <div class="container-fluid animated fadeIn">
-        <div class="row">
-            <button type="button" class="goBack btn btn-secondary"><i class="glyphicon glyphicon-shopping-cart"></i> Checkouts</button>
-            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home </button>
-        </div>
-        <div class="row" style="padding-top:30px;">
-            <div class="col-md-1"></div>
-            <div class="col-md-3">
-                <h1>Add New Checkout</h1>
-                {{> quickForm collection="Checkouts" id="insertCheckouts" type = "insert" class="new-checkout-form"}}
-            </div>
-            <div class="col-md-8"></div>
-        </div>
-    </div>
-
-</template>
-
 
 
 <template name="removeCheckout">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary "> <i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
         </div>
         <div class="row">
             <h1>Remove a Checkout</h1>
@@ -505,16 +654,18 @@
                     <th></th>
                     <th>Checkout Date</th>
                     <th>Customer</th>
-                    <th>Products</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
                 </tr>
                 </thead>
                 <tbody>
                 {{#each checkouts}}
                     <tr>
                         <td><button class="delete">&times;</button></td>
-                        <td>{{formatDate}}</td>
+                        <td>{{date}}</td>
                         <td>{{customer}}</td>
-                        <td>{{products}}</td>
+                        <td>{{product}}</td>
+                        <td>{{quantity}}</td>
                     </tr>
                 {{else}}
                     <div class="wrapper-message">
@@ -531,7 +682,7 @@
 <template name="removeLab">
     <div class="container-fluid animated fadeIn">
         <div class="row">
-            <button type="button" class="goBack btn btn-secondary "> <i class="glyphicon glyphicon-chevron-left"></i> Go Back</button>
+            <button type="button" class="goHome btn btn-secondary"><i class="glyphicon glyphicon-home"></i> Go Home</button>
         </div>
         <div class="row">
             <h1>Remove a Lab</h1>
@@ -542,7 +693,7 @@
                 <tr>
                     <th></th>
                     <th>Lab Name</th>
-                    <th>Cost Numbers</th>
+                    <th>Room</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -550,7 +701,7 @@
                     <tr>
                         <td><button class="delete">&times;</button></td>
                         <td>{{name}}</td>
-                        <td>{{costNumbers}}</td>
+                        <td>{{room}}</td>
                     </tr>
                 {{else}}
                     <div class="wrapper-message">

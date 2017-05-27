@@ -3,7 +3,8 @@ import { Template } from 'meteor/templating';
 import Products from '../collections/Products.js';
 import Labs from '../collections/Labs.js';
 import Checkouts from '../collections/Checkouts.js';
-import { ReactiveVar } from 'meteor/reactive-var';
+import UserAccounts from '../collections/UserAccounts.js';
+
 
 import './main.html';
 
@@ -25,23 +26,20 @@ Template.register.events({
         var emailVar = template.find('#email').value;
         var pinVar = template.find('#userPin').value;
 
+
+
         if (isEmail(emailVar)) {
             Accounts.createUser({
                 email: emailVar,
                 password: pinVar
             });
-            console.log(emailVar + " registered as ");
+            UserAccounts.insert({email:emailVar,pin:pinVar});
             FlowRouter.go('login');
 
         }
 
         return false;// prevent the submission
 
-        /*   console.log(emailVar + " registered as ");
-         },
-         'click .goLogin': function(event){
-         event.preventDefault();
-         */
     },
     'click .goLogin': function(event) {
         event.preventDefault();
@@ -59,11 +57,9 @@ Template.login.events({
                 Bert.alert("Incorrect email or password! Try again.",'warning','fixed-top');
             }
         });
-        console.log(emailVar + " logged in" );
     },'click .register': function(event){
         event.preventDefault();
         FlowRouter.go('register');
-        console.log("register here");
     },'click .addAdmin': function(event){
         event.preventDefault();
         FlowRouter.go('addAdmin');
@@ -74,30 +70,25 @@ Template.adminhome.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
-        console.log("logged out");
     },'click .adminTools': function(event){
         event.preventDefault();
         FlowRouter.go('adminTools');
-        console.log("add products here");
-    },'click .newCheckout1': function(event){
+    },'click .newCheckout': function(event){
         event.preventDefault();
         FlowRouter.go('newCheckout');
-        console.log("add new checkouts")
     }
 });
 Template.home.events({
     'click .logout': function(event){
         event.preventDefault();
         Meteor.logout();
-        console.log("logged out");
     }
 });
 
 Template.adminTools.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
         FlowRouter.go('adminhome');
-        console.log("returned home");
     },
     'click .addadmin': function(event){
         event.preventDefault();
@@ -106,77 +97,138 @@ Template.adminTools.events({
     'click .labPage': function(event){
         event.preventDefault();
         FlowRouter.go('labPage');
-        console.log("view and edit labs here");
+    }, 'click .users': function(event){
+        event.preventDefault();
+        FlowRouter.go('users');
     }, 'click .productPage': function(event){
         event.preventDefault();
         FlowRouter.go('productPage');
-        console.log("view and edit products here");
     }
-    , 'click .checkoutPage': function(event){
+    , 'click .newCheckout': function(event){
+        event.preventDefault();
+        FlowRouter.go('newCheckout');
+    }
+    , 'click .checkoutPage': function(event) {
         event.preventDefault();
         FlowRouter.go('checkoutPage');
-        console.log("view and add checkouts here");}
+    }
 });
 
 
-Template.editProduct.events({
-    'click .goBack': function(event){
+Template.updateStock.events({
+    'click .goHome': function(event){
+        event.preventDefault();
+        FlowRouter.go('adminhome');
+    },
+    'click .goProducts': function(event){
         event.preventDefault();
         FlowRouter.go('productPage');
+    },
+    'submit form': function(event, template) {
+        event.preventDefault();
+        var newPrice = template.find('#newPrice').value;
+        var newQuan = template.find('#newQuan').value;
+        var productName = template.find('#product').value;
+        var prodId = Products.findOne({name:productName})._id;
+        var prodquan = Products.findOne({name:productName}).quantity;
+        var prodprice = Products.findOne({name:productName}).price;
+        if(newPrice =="" && newQuan == ""){
+            Bert.alert("Update failed. Please enter a new price or quantity.",'danger','fixed-top');
+        }
+        else{
+            if(newQuan ==""){
+                newQuan = prodquan;
+            }
+            if(newPrice == ""){
+                newPrice = prodprice;
+            }
+            Products.update({_id: prodId},{$set: {quantity : newQuan}});
+            Products.update({_id: prodId},{$set: {price : newPrice}});
+
+            Bert.alert("Update successful.",'success','fixed-top');
+        }
+
+    }
+});
+Template.editLab.events({
+    'click .goHome': function(event){
+        event.preventDefault();
+        FlowRouter.go('adminhome');
+    },
+    'click .goLabs': function(event){
+        event.preventDefault();
+        FlowRouter.go('labPage');
+    },
+    'submit form': function(event, template) {
+        event.preventDefault();
+        var newRoom = template.find('#newRoom').value;
+        var labName = template.find('#lab').value;
+        var labId = Labs.findOne({name:labName})._id;
+        Labs.update({_id: labId},{$set: {room : newRoom}});
+        if(Labs.findOne({name:labName}).room == newRoom){
+            Bert.alert("Edit successful.",'success','fixed-top');
+
+        }
+        else{
+            Bert.alert("Update failed. Please enter a valid new room.",'danger','fixed-top');
+        }
+
     }
 });
 Template.addAdmin.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('login');
+        FlowRouter.go('adminhome');
     }
 });
 
 Template.labPage.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('adminTools');
+        FlowRouter.go('adminhome');
     }
     ,'click .addLab': function(event){
         event.preventDefault();
         FlowRouter.go('addLab');
-        console.log("add labs here");
+    }
+    ,'click .editLab': function(event){
+        event.preventDefault();
+        FlowRouter.go('editLab');
     }
     ,'click .removeLab': function(event){
         event.preventDefault();
         FlowRouter.go('removeLab');
-        console.log("remove products here");
     }
-    // , 'click .editLab': function(event){
-    //     event.preventDefault();
-    //     FlowRouter.go('editLab');
-    //     console.log("edit products here");}
+});
+Template.users.events({
+    'click .goHome': function(event){
+        event.preventDefault();
+        FlowRouter.go('adminhome');
+    }
 });
 
 Template.productPage.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('adminTools');
+        FlowRouter.go('adminhome');
     }
     ,'click .newProduct': function(event){
         event.preventDefault();
         FlowRouter.go('addProduct');
-        console.log("add products here");
     }
     ,'click .removeProduct': function(event){
         event.preventDefault();
         FlowRouter.go('removeProduct');
-        console.log("remove products here");
     }
-    , 'click .editProduct': function(event){
+    , 'click .updateStock': function(event){
         event.preventDefault();
-        FlowRouter.go('editProduct');
-        console.log("edit products here");}
+        FlowRouter.go('updateStock');
+    }
 });
 Template.checkoutPage.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('adminTools');
+        FlowRouter.go('adminhome');
     }
     ,'click .newCheckout': function(event){
         event.preventDefault();
@@ -185,73 +237,102 @@ Template.checkoutPage.events({
     ,'click .removeCheckout': function(event){
         event.preventDefault();
         FlowRouter.go('removeCheckout');
-        console.log("remove checkouts here");
     }
 
 });
 
-Template.newCheckout.events({
-    'click .goBack': function(event){
-        event.preventDefault();
-        FlowRouter.go('checkoutPage');
-    },
+
+Template.addProduct.events({
     'click .goHome': function(event){
         event.preventDefault();
         FlowRouter.go('adminhome');
     }
 });
 
-
-
-
-Template.addProduct.events({
-    'click .goBack': function(event){
+Template.newCheckout.events({
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('productPage');
+        FlowRouter.go('adminhome');
+    },
+    'click .goCheckouts': function(event){
+        event.preventDefault();
+        FlowRouter.go('checkoutPage');
+    },
+    'click .addLab': function(event){
+        event.preventDefault();
+        FlowRouter.go('addLab');
+    },
+    'click .newProduct': function(event){
+        event.preventDefault();
+        FlowRouter.go('addProduct');
+    },
+    'submit form': function(event, template) {
+        event.preventDefault();
+        var customer = template.find('#customer').value;
+        var product = template.find('#product').value;
+        var qty = template.find('#quantity').value;
+        var bquan = Products.findOne({name:product}).quantity;
+        var aquan = bquan - qty;
+        var prodId = Products.findOne({name:product})._id;
+
+        if(aquan >= 0 && qty != ''){
+            Checkouts.insert({
+                product: product,
+                customer: customer,
+                quantity: qty
+            });
+            Products.update({_id: prodId},{$set: {quantity : aquan}});
+
+            Bert.alert("Checkout successful.",'success','fixed-top');
+        }
+        else{
+            Bert.alert("Checkout failed.",'danger','fixed-top');
+        }
+
     }
 });
 
 Template.addLab.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('labPage');
+        FlowRouter.go('adminhome');
     }
 });
 Template.removeProduct.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('productPage');
+        FlowRouter.go('adminhome');
     },
     'click .delete': function () {
         Products.remove(this._id);
     }
 });
 Template.removeCheckout.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('checkoutPage');
+        FlowRouter.go('adminhome');
     },
     'click .delete': function () {
         Checkouts.remove(this._id);
+        var qty = this.quantity;
+        var product = this.product;
+        var bquan = Products.findOne({name:product}).quantity;
+        var aquan = bquan + qty;
+        var prodId = Products.findOne({name:product})._id;
+
+        Products.update({_id: prodId},{$set: {quantity : aquan}});
     }
 });
 Template.removeLab.events({
-    'click .goBack': function(event){
+    'click .goHome': function(event){
         event.preventDefault();
-        FlowRouter.go('labPage');
+        FlowRouter.go('adminhome');
     },
     'click .delete': function () {
         Labs.remove(this._id);
     }
 });
 
-// Template.home.events({
-//     'click.register': function(event){
-//         event.preventDefault();
-//         FlowRouter.go('register');
-//         console.log("register here");
-//     }
-// });
 
 Tracker.autorun(function () {
     if (!Meteor.userId()) {
@@ -273,6 +354,18 @@ Template.productPage.helpers({
             sort:{name:1}
         });    }
 });
+Template.users.helpers({
+    useraccounts() {
+        return UserAccounts.find({},{
+            sort:{email:1}
+        });    }
+});
+Template.newCheckout.helpers({
+    products() {
+        return Products.find({},{
+            sort:{name:1}
+        });    }
+});
 Template.home.helpers({
     products() {
         return Products.find({},{
@@ -285,10 +378,16 @@ Template.adminhome.helpers({
             sort:{name:1}
         });    }
 });
-Template.editProduct.helpers({
+Template.updateStock.helpers({
     products() {
-        //Products.price().toFixed(2);
         return Products.find({},{
+            sort:{name:1}
+        });
+    }
+});
+Template.editLab.helpers({
+    labs() {
+        return Labs.find({},{
             sort:{name:1}
         });
     }
@@ -306,11 +405,18 @@ Template.removeLab.helpers({
             sort:{name:1}
         });    }
 });
+Template.newCheckout.helpers({
+    labs() {
+        return Labs.find({},{
+            sort:{name:1}
+        });    }
+});
 
 // global template for dates
 Template.registerHelper('formatDate', function(date) {
     return moment(date).format('LLL');
 });
+
 
 Template.checkoutPage.helpers({
     checkouts() {
@@ -328,9 +434,9 @@ Template.removeCheckout.helpers({
     }
 });
 Template.editProduct.events({
-        'click .goBack': function(event){
+        'click .goHome': function(event){
             event.preventDefault();
-            FlowRouter.go('productPage');
+            FlowRouter.go('adminhome');
         },
         'click .editThis': function(event,) {
             event.preventDefault();

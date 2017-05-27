@@ -16,15 +16,15 @@ Checkouts.allow({
 
 
 CheckoutSchema = new SimpleSchema({
-    products:{
-        type: [Products],
-        label: "Products"
+    product:{
+        type: String,
+        label: "Product"
     },
     // total:{
     //     type: Number,
     //     decimal: true
     // }, TODO
-    quantity1:{
+    quantity:{
         type: Number,
         label:"Quantity"
     },

@@ -14,9 +14,8 @@ CostNumbers.allow({
 
 CostNumberSchema = new SimpleSchema({
     number:{
-        type: Number,
-        min: 200000000000,
-        max: 300000000000,
+        type: String,
+        regEx: /^2([0-9]{8,20})$/,
         label: "Number"
     }
 });

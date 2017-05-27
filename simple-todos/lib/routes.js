@@ -89,12 +89,6 @@ FlowRouter.route('/newCheckout',{
     }
 });
 
-FlowRouter.route('/newCheckout1',{
-    name:'newCheckout1',
-    action(){
-        BlazeLayout.render('newCheckout1');
-    }
-});
 FlowRouter.route('/removeCheckout',{
     name:'removeCheckout',
     action(){
@@ -111,6 +105,24 @@ FlowRouter.route('/addAmin',{
     name:'addAdmin',
     action(){
         BlazeLayout.render('addAdmin');
+    }
+});
+FlowRouter.route('/updateStock',{
+    name:'updateStock',
+    action(){
+        BlazeLayout.render('updateStock');
+    }
+});
+FlowRouter.route('/editLab',{
+    name:'editLab',
+    action(){
+        BlazeLayout.render('editLab');
+    }
+});
+FlowRouter.route('/users',{
+    name:'users',
+    action(){
+        BlazeLayout.render('users');
     }
 });
 
